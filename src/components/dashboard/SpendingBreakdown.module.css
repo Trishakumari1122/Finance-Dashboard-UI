@@ -1,0 +1,144 @@
+.breakdownCard {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-base);
+}
+
+.breakdownCard:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.content {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.chartArea {
+    flex-shrink: 0;
+    width: 220px;
+    height: 220px;
+    position: relative;
+}
+
+@keyframes spinDrawIn {
+    0% { transform: rotate(-360deg) scale(0.2); opacity: 0; filter: blur(10px); }
+    50% { filter: blur(0px); opacity: 1; }
+    100% { transform: rotate(0deg) scale(1); opacity: 1; filter: blur(0px); }
+}
+
+.chartArea :global(.recharts-wrapper) {
+    animation: spinDrawIn 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: center center;
+}
+
+.legend {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    transition: all var(--transition-fast);
+}
+
+.legendItem:hover {
+    background: var(--bg-hover);
+    transform: translateX(4px);
+}
+
+.legendDot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.legendLabel {
+    flex: 1;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.legendValue {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.legendPercent {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    min-width: 38px;
+    text-align: right;
+}
+
+.emptyChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    color: var(--text-tertiary);
+    gap: var(--spacing-sm);
+}
+
+.emptyChartIcon {
+    font-size: 2.5rem;
+    opacity: 0.5;
+}
+
+.emptyChartText {
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .chartArea {
+        width: 180px;
+        height: 180px;
+    }
+}

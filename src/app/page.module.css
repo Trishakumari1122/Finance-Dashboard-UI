@@ -1,0 +1,45 @@
+.dashboardBento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  grid-auto-flow: dense;
+}
+
+.summarySection {
+  grid-column: span 3;
+}
+
+.trendSection {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.breakdownSection {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.recentSection {
+  grid-column: span 1;
+  grid-row: span 1;
+  display: flex;
+}
+
+.recentSection>* {
+  flex: 1;
+  /* ensures RecentTransactions stretches to fill height */
+}
+
+@media (max-width: 1024px) {
+  .dashboardBento {
+    grid-template-columns: 1fr;
+  }
+
+  .summarySection,
+  .trendSection,
+  .breakdownSection,
+  .recentSection {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+}

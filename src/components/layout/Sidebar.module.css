@@ -1,0 +1,168 @@
+.sidebar {
+    position: fixed;
+    top: 32px;
+    left: 32px;
+    bottom: 32px;
+    width: var(--sidebar-width);
+    background: linear-gradient(to bottom, var(--bg-glass), rgba(15, 23, 42, 0.05));
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid var(--border-light);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 32px;
+    box-shadow: var(--shadow-xl), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+    overflow: hidden;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.logoIcon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-teal));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.3);
+    animation: floatSoft 5s ease-in-out infinite;
+}
+
+.brandName {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.brandSub {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+}
+
+.nav {
+    flex: 1;
+    padding: var(--spacing-lg) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: 11px var(--spacing-md);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.navLink:active {
+    transform: scale(0.97);
+}
+
+.navLink:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.navLink.active {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), transparent);
+    color: var(--text-primary);
+    box-shadow: inset 2px 0 0 var(--primary-500);
+}
+
+.navLink.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary-500), var(--accent-teal));
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+    box-shadow: 0 0 15px var(--primary-500);
+    animation: pulseBorder 3s infinite;
+}
+
+.navIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.roleInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.roleAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.roleName {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.roleLabel {
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    text-transform: capitalize;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}

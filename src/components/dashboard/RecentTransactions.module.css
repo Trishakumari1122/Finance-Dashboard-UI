@@ -1,0 +1,134 @@
+.recentCard {
+    background: var(--bg-secondary);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-card), var(--border-glow);
+}
+
+.recentCard:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: var(--shadow-lg), var(--border-glow);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.viewAll {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-500);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: rgba(99, 102, 241, 0.08);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.viewAll:hover {
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: 10px var(--spacing-sm);
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+}
+
+.item:hover {
+    background: var(--bg-tertiary);
+}
+
+.itemIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.itemIcon.income {
+    background: var(--color-income-bg);
+}
+
+.itemIcon.expense {
+    background: var(--color-expense-bg);
+}
+
+.itemInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.itemDesc {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.itemDate {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    margin-top: 1px;
+}
+
+.itemAmount {
+    font-size: 0.9rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.itemAmount.income {
+    color: var(--color-income);
+}
+
+.itemAmount.expense {
+    color: var(--color-expense);
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl) 0;
+    color: var(--text-tertiary);
+    gap: var(--spacing-sm);
+}
+
+.emptyIcon {
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+.emptyText {
+    font-size: 0.85rem;
+}

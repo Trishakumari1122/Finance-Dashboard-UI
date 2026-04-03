@@ -1,0 +1,280 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.insightsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.insightCard {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-light);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl);
+    padding: calc(var(--spacing-lg) * 1.2);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.insightCard:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-xl), 0 20px 40px -10px rgba(99, 102, 241, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+.insightCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.insightCard.highlight::before {
+    background: linear-gradient(90deg, var(--accent-coral), var(--accent-amber));
+}
+
+.insightCard.good::before {
+    background: linear-gradient(90deg, var(--accent-emerald), var(--accent-teal));
+}
+
+.insightCard.info::before {
+    background: linear-gradient(90deg, var(--primary-500), var(--accent-purple));
+}
+
+.insightIconBg {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.insightIconBg.highlight {
+    background: rgba(244, 63, 94, 0.08);
+}
+
+.insightIconBg.good {
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.insightIconBg.info {
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.insightLabel {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.insightValue {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    animation: countUp 0.6s ease-out;
+}
+
+.insightDesc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.insightChange {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    margin-top: var(--spacing-sm);
+}
+
+.insightChange.up {
+    background: var(--color-expense-bg);
+    color: var(--color-expense);
+}
+
+.insightChange.down {
+    background: var(--color-income-bg);
+    color: var(--color-income);
+}
+
+/* Chart section */
+.chartSection {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-light);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-xl);
+    padding: calc(var(--spacing-lg) * 1.5);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.chartSection:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl), 0 20px 40px -10px rgba(99, 102, 241, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.chartHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.chartTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.chartSubtitle {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.chartBadge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.chartWrapper {
+    width: 100%;
+    height: 350px;
+}
+
+/* Top categories breakdown */
+.topCategories {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-light);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-xl);
+    padding: calc(var(--spacing-lg) * 1.5);
+    box-shadow: var(--shadow-card), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.categoryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.categoryItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.categoryRank {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+}
+
+.categoryIcon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.categoryInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.categoryName {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.categoryBarBg {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.categoryBar {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.8s ease-out;
+}
+
+.categoryAmount {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    flex-shrink: 0;
+    text-align: right;
+    min-width: 80px;
+}
+
+.categoryPercent {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    text-align: right;
+}
+
+/* Two column layout */
+.twoColumns {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+@media (max-width: 1024px) {
+    .insightsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .twoColumns {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .insightsGrid {
+        grid-template-columns: 1fr;
+    }
+}

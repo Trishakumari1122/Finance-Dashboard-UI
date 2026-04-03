@@ -1,0 +1,29 @@
+# Finance Dashboard - Frontend Assignment
+
+Hi! Thanks for taking the time to review my submission for the Frontend Developer Intern role.
+
+I built this using **Next.js** and **React**. To show my skills in pure CSS, I chose not to use UI libraries like Tailwind or MUI. Instead, I built the entire dashboard and its frosted glass design from scratch using basic CSS Modules and variables.
+
+## Running the app
+
+```bash
+npm install
+npm run dev
+```
+Then just open `http://localhost:3000` in your browser.
+
+## How I built it
+
+* **State Management:** I kept it simple. Instead of using complex tools like Redux, I used React Context to manage the transactions, filters, and theme. I also saved everything to `localStorage` so you don't lose your data when you refresh the page.
+* **Data Handling:** I avoided saving calculated totals directly in the app's state to prevent bugs. Instead, I wrote helper functions to calculate chart totals and spending patterns on the fly.
+* **User Roles:** I added a dropdown in the top right corner to let you switch between Admin and Viewer. Viewers can only see the data, while Admins can add and manage transactions.
+* **Design & Animations:** The app fully supports Dark Mode! I also added smooth, custom animations to the charts and screen elements to make the dashboard feel lively and interactive.
+
+## Features included
+
+* **Dashboard:** Four summary cards, a balance trend chart, and a fully animated donut chart for spending categories.
+* **Transactions:** A data table with text search, dropdown filtering, and sorting.
+* **Insights:** A dedicated tab showing your savings rate, biggest expenses, and monthly spending changes.
+* **Extras:** A fully mobile-responsive design, clear empty data screens, and buttons to export your data to CSV or JSON.
+
+Thanks again for looking over my work! I'd be happy to answer any questions you have about the code.

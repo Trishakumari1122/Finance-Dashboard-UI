@@ -1,0 +1,68 @@
+.spotlightWrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+/* ensure children sit above the absolute spotlight layer */
+.spotlightWrapper> :not(.spotlight) {
+    position: relative;
+    z-index: 2;
+}
+
+/* GLOBALLY REUSABLE HOVER TRAP ANIMATION */
+.cardHoverTrap {
+    perspective: 1200px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.cardHoverTrap::before {
+    content: '';
+    position: absolute;
+    inset: -15px; /* Huge hitbox to safely contain large 360 spins */
+    z-index: 100;
+}
+
+.cardHoverTrap:hover {
+    z-index: 20;
+}
+
+@keyframes slowDreamySpinPop {
+    0% { 
+        transform: translate(0, 0) scale(1) rotateY(0deg); 
+        background: transparent;
+    }
+    /* 1. Slower 360 rotation finishes IN PLACE */
+    45% { 
+        transform: translate(0, 0) scale(1) rotateY(-360deg); 
+        box-shadow: none;
+        background: transparent;
+    }
+    /* 2. Zoom dramatically towards the absolute center of the user's screen */
+    70% { 
+        transform: translate(var(--move-x, 0px), var(--move-y, -20px)) scale(1.6) rotateY(-360deg); 
+        box-shadow: 0 100px 200px -20px rgba(99, 102, 241, 0.9), inset 0 2px 5px rgba(255, 255, 255, 1);
+        background: var(--bg-primary);
+        z-index: 9999;
+    }
+    /* 3. Return gracefully back to resting position */
+    100% { 
+        transform: translate(0, 0) scale(1) rotateY(-360deg); 
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        background: transparent;
+    }
+}
+
+.cardHoverTrap:hover > div {
+    animation: slowDreamySpinPop 4.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
