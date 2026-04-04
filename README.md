@@ -1,6 +1,6 @@
 # Finance Dashboard - Frontend Assignment
 
-**🚀 Live Demo:** [https://finance-dashboard-l5lref4q7-trishas-projects-4afcdad0.vercel.app](https://finance-dashboard-l5lref4q7-trishas-projects-4afcdad0.vercel.app/)
+**🚀 Live Demo:** [https://finance-dashboard-l9z1ycix7-trishas-projects-4afcdad0.vercel.app](https://finance-dashboard-l9z1ycix7-trishas-projects-4afcdad0.vercel.app/)
 
 Hi! Thanks for taking the time to review my submission for the Frontend Developer Intern role.
 
