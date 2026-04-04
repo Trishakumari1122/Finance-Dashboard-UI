@@ -9,36 +9,41 @@ import SpotlightCard from '@/components/ui/SpotlightCard';
 import styles from './SpendingBreakdown.module.css';
 
 const renderActiveShape = (props) => {
-    const RADIAN = Math.PI / 180;
-    const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
-    const sin = Math.sin(-RADIAN * midAngle);
-    const cos = Math.cos(-RADIAN * midAngle);
-    const sx = cx + (outerRadius + 8) * cos;
-    const sy = cy + (outerRadius + 8) * sin;
-    const mx = cx + (outerRadius + 22) * cos;
-    const my = cy + (outerRadius + 22) * sin;
-    const ex = mx + (cos >= 0 ? 1 : -1) * 18;
-    const ey = my;
-    const textAnchor = cos >= 0 ? 'start' : 'end';
+    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
 
     return (
         <g>
+            {/* Soft background glow pulse behind the slice */}
             <Sector
                 cx={cx}
                 cy={cy}
-                innerRadius={innerRadius}
-                outerRadius={outerRadius + 8}
+                innerRadius={innerRadius - 6}
+                outerRadius={outerRadius + 14}
+                startAngle={startAngle - 2}
+                endAngle={endAngle + 2}
+                fill={fill}
+                opacity={0.15}
+            />
+            {/* The main popped out slice */}
+            <Sector
+                cx={cx}
+                cy={cy}
+                innerRadius={innerRadius - 2}
+                outerRadius={outerRadius + 12}
                 startAngle={startAngle}
                 endAngle={endAngle}
                 fill={fill}
-                style={{ filter: `drop-shadow(0px 0px 8px ${fill}90)` }}
+                style={{ filter: `drop-shadow(0px 8px 16px ${fill}60)` }}
             />
-            <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-            <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-            <text x={ex + (cos >= 0 ? 1 : -1) * 8} y={ey} textAnchor={textAnchor} fill="var(--text-primary)" fontSize={12} fontWeight={600}>
+            
+            {/* Perfectly proportioned and centered Typography with normalized font sizes */}
+            <text x={cx} y={cy - 20} textAnchor="middle" dominantBaseline="middle" fill="var(--text-tertiary)" fontSize={12} fontWeight={500} opacity={0.9}>
                 {payload.name}
             </text>
-            <text x={ex + (cos >= 0 ? 1 : -1) * 8} y={ey} dy={16} textAnchor={textAnchor} fill="var(--text-tertiary)" fontSize={11}>
+            <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fill="var(--text-primary)" fontSize={18} fontWeight={700}>
+                {formatCurrency(value)}
+            </text>
+            <text x={cx} y={cy + 20} textAnchor="middle" dominantBaseline="middle" fill={fill} fontSize={12} fontWeight={700}>
                 {`${(percent * 100).toFixed(1)}%`}
             </text>
         </g>
@@ -73,27 +78,13 @@ export default function SpendingBreakdown() {
 
     const [activeIndex, setActiveIndex] = useState(-1);
 
-    useEffect(() => {
-        if (data.length <= 1) return;
-        
-        // Delay the auto-cycler so Recharts can finish its own draw animation
-        const initialTimeout = setTimeout(() => {
-            setActiveIndex(0);
-            
-            const interval = setInterval(() => {
-                setActiveIndex((current) => (current + 1) % data.length);
-            }, 3000);
-            
-            // Store interval ID on window to clear it later (hacky but works since useEffect cleanup is tricky with nested timeouts)
-            window._pieInterval = interval;
-            
-        }, 2500);
+    const onPieEnter = (_, index) => {
+        setActiveIndex(index);
+    };
 
-        return () => {
-            clearTimeout(initialTimeout);
-            if (window._pieInterval) clearInterval(window._pieInterval);
-        };
-    }, [data.length]);
+    const onPieLeave = () => {
+        setActiveIndex(-1);
+    };
 
     if (data.length === 0) {
         return (
@@ -126,28 +117,24 @@ export default function SpendingBreakdown() {
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
-                                activeIndex={activeIndex >= 0 ? activeIndex : undefined}
-                                activeShape={activeIndex >= 0 ? renderActiveShape : undefined}
-                                onMouseEnter={(_, index) => {
-                                    if (window._pieInterval) clearInterval(window._pieInterval);
-                                    setActiveIndex(index);
-                                }}
                                 data={data}
                                 cx="50%"
                                 cy="50%"
-                                innerRadius={65}
-                                outerRadius={95}
-                                paddingAngle={3}
+                                innerRadius={72}
+                                outerRadius={100}
+                                paddingAngle={4}
                                 dataKey="value"
-                                animationDuration={2500}
-                                animationEasing="ease-out"
                                 stroke="none"
+                                activeIndex={activeIndex}
+                                activeShape={renderActiveShape}
+                                onMouseEnter={onPieEnter}
+                                onMouseLeave={onPieLeave}
+                                animationDuration={2500}
                             >
                                 {data.map((entry, index) => (
                                     <Cell key={index} fill={entry.color} />
                                 ))}
                             </Pie>
-                            <Tooltip content={<CustomTooltip />} />
                         </PieChart>
                     </ResponsiveContainer>
                 </div>

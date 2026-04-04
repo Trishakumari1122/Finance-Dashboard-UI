@@ -39,6 +39,28 @@
   --border-glow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   --border-glow-sidebar: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
+  /* Utility overrides for perfect glassmorphism & interaction */
+*,
+*:focus,
+*:active,
+*:focus-visible {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Explicit destruction of any Recharts generated focus features */
+.recharts-wrapper,
+.recharts-surface,
+.recharts-surface:focus,
+.recharts-wrapper:focus,
+.recharts-responsive-container,
+.recharts-responsive-container:focus,
+.recharts-accessibility-focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
   /* layered, soft shadows for premium feel */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.02);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);

@@ -1,5 +1,7 @@
 # Finance Dashboard - Frontend Assignment
 
+**🚀 Live Demo:** [https://finance-dashboard-l5lref4q7-trishas-projects-4afcdad0.vercel.app](https://finance-dashboard-l5lref4q7-trishas-projects-4afcdad0.vercel.app/)
+
 Hi! Thanks for taking the time to review my submission for the Frontend Developer Intern role.
 
 I built this using **Next.js** and **React**. To show my skills in pure CSS, I chose not to use UI libraries like Tailwind or MUI. Instead, I built the entire dashboard and its frosted glass design from scratch using basic CSS Modules and variables.

@@ -8,6 +8,7 @@ export default function SpotlightCard({ children, className = '', highlightColor
     const [isFocused, setIsFocused] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [opacity, setOpacity] = useState(0);
+    const [hasAnimated, setHasAnimated] = useState(false);
 
     const handleMouseMove = (e) => {
         if (!divRef.current || isFocused) return;
@@ -28,6 +29,7 @@ export default function SpotlightCard({ children, className = '', highlightColor
 
     const handleMouseEnter = () => {
         setOpacity(1);
+        setHasAnimated(true);
         // Calculate the translation needed to move THIS card exactly to the center of the viewport
         if (divRef.current) {
             const rect = divRef.current.getBoundingClientRect();
@@ -49,7 +51,7 @@ export default function SpotlightCard({ children, className = '', highlightColor
     };
 
     return (
-        <div className={styles.cardHoverTrap} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className={`${styles.cardHoverTrap} ${hasAnimated ? styles.animateOnce : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div
                 ref={divRef}
                 onMouseMove={handleMouseMove}

@@ -46,9 +46,12 @@
 
 .chartArea {
     flex-shrink: 0;
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes spinDrawIn {
@@ -138,7 +141,7 @@
     }
 
     .chartArea {
-        width: 180px;
-        height: 180px;
+        width: 220px;
+        height: 220px;
     }
 }
