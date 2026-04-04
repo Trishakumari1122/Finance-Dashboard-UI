@@ -1,13 +1,16 @@
 .spotlightWrapper {
     position: relative;
     overflow: hidden;
+    transform: perspective(1200px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+    /* Buttery smooth tracking with momentum */
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .spotlight {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1;
 }
 
@@ -29,40 +32,55 @@
 .cardHoverTrap::before {
     content: '';
     position: absolute;
-    inset: -15px; /* Huge hitbox to safely contain large 360 spins */
-    z-index: -1; /* Sit behind the actual card so interactive elements (like Pie Chart slices) can be hovered! */
+    inset: -15px;
+    /* Huge hitbox to safely contain large 360 spins */
+    z-index: -1;
+    /* Sit behind the actual card so interactive elements can be hovered! */
 }
 
 .cardHoverTrap:hover {
     z-index: 20;
 }
 
-@keyframes slowDreamySpinPop {
-    0% { 
-        transform: translate(0, 0) scale(1) rotateY(0deg); 
+@keyframes spinOnHover {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(-360deg);
+    }
+}
+
+.cardHoverTrap.isHovered>div {
+    /* Buttery, elegant spin over 2s with deep easing curve */
+    animation: spinOnHover 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes zoomToCenterScreen {
+    0% {
+        transform: translate(0, 0) scale(1);
         background: transparent;
     }
-    /* 1. Slower 360 rotation finishes IN PLACE */
-    45% { 
-        transform: translate(0, 0) scale(1) rotateY(-360deg); 
-        box-shadow: none;
-        background: transparent;
-    }
-    /* 2. Zoom elegantly towards the absolute center of the user's screen */
-    70% { 
-        transform: translate(var(--move-x, 0px), var(--move-y, -20px)) scale(1.15) rotateY(-360deg); 
+    40% {
+        transform: translate(var(--move-x, 0px), var(--move-y, -20px)) scale(1.15) !important;
         box-shadow: 0 80px 160px -20px rgba(99, 102, 241, 0.75), inset 0 2px 5px rgba(255, 255, 255, 1);
         background: var(--bg-primary);
         z-index: 9999;
     }
-    /* 3. Return gracefully back to resting position */
-    100% { 
-        transform: translate(0, 0) scale(1) rotateY(-360deg); 
+    60% {
+        transform: translate(var(--move-x, 0px), var(--move-y, -20px)) scale(1.15) !important;
+        box-shadow: 0 80px 160px -20px rgba(99, 102, 241, 0.75), inset 0 2px 5px rgba(255, 255, 255, 1);
+        background: var(--bg-primary);
+        z-index: 9999;
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.1);
         background: transparent;
     }
 }
 
-.cardHoverTrap.animateOnce > div {
-    animation: slowDreamySpinPop 4.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+.cardHoverTrap.isClicked>div {
+    /* Longer, profound zoom curve */
+    animation: zoomToCenterScreen 3s cubic-bezier(0.2, 0.9, 0.1, 1) forwards;
 }
